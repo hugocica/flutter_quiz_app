@@ -10,7 +10,7 @@ class ResultsScreen extends StatelessWidget {
   final List<String> answers;
   final void Function() onRestart;
 
-  List<ResultsSummary> getSummaryData() {
+  List<ResultsSummary> get _summaryData {
     final List<ResultsSummary> summary = [];
 
     for (var i = 0; i < answers.length; i++) {
@@ -24,11 +24,11 @@ class ResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final totalQuestions = questions.length;
-    final totalCorrectAnswers = getSummaryData()
+    final totalCorrectAnswers = _summaryData
         .where((data) => data.userAnswer == data.correctAnswer)
         .length;
 
-    final List<Widget> summaryData = getSummaryData().map((data) {
+    final List<Widget> summaryData = _summaryData.map((data) {
       return Column(
         children: [
           Row(
