@@ -10,7 +10,7 @@ class ResultsScreen extends StatelessWidget {
   final List<String> answers;
   final void Function() onRestart;
 
-  List<ResultsSummary> get _summaryData {
+  List<ResultsSummary> get summaryData {
     final List<ResultsSummary> summary = [];
 
     for (var i = 0; i < answers.length; i++) {
@@ -24,11 +24,11 @@ class ResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final totalQuestions = questions.length;
-    final totalCorrectAnswers = _summaryData
+    final totalCorrectAnswers = summaryData
         .where((data) => data.userAnswer == data.correctAnswer)
         .length;
 
-    final List<Widget> summaryData = _summaryData.map((data) {
+    Widget buildSummaryItem(ResultsSummary data) {
       return Column(
         children: [
           Row(
@@ -68,14 +68,14 @@ class ResultsScreen extends StatelessWidget {
                       height: 4,
                     ),
                     Text(
-                      data.correctAnswer,
+                      'Correct Answer: ${data.correctAnswer}',
                       style: GoogleFonts.openSans(color: Colors.green),
                     ),
                     const SizedBox(
                       height: 4,
                     ),
                     Text(
-                      data.userAnswer,
+                      'Your Answer: ${data.userAnswer}',
                       style: GoogleFonts.openSans(
                         color: Colors.cyan,
                       ),
@@ -90,7 +90,7 @@ class ResultsScreen extends StatelessWidget {
           ),
         ],
       );
-    }).toList();
+    }
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -117,7 +117,7 @@ class ResultsScreen extends StatelessWidget {
               child: Expanded(
                 child: SingleChildScrollView(
                   child: Column(
-                    children: summaryData,
+                    children: summaryData.map(buildSummaryItem).toList(),
                   ),
                 ),
               ),
