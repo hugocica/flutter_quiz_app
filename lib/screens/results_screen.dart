@@ -114,15 +114,20 @@ class ResultsScreen extends StatelessWidget {
             ),
             SizedBox(
               height: 450,
-              child: Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: summaryData.map(buildSummaryItem).toList(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: summaryData.length,
+                      padding: const EdgeInsets.all(0),
+                      itemBuilder: (context, index) =>
+                          buildSummaryItem(summaryData[index]),
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
-            const Text(''),
             const SizedBox(
               height: 30,
             ),
