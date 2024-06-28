@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-**Used fvm for mananing flutter version. Used version: 3.22.2**
+**Used fvm for managing flutter version. Used version: 3.22.2**
 
 ## Getting Started
 
